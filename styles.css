@@ -2009,9 +2009,31 @@ h1 {
 }
 
 @media (max-width: 720px) {
+  .top-nav {
+    height: auto;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 0.1rem 0.95rem;
+    padding: calc(0.4rem + env(safe-area-inset-top)) 0.7rem 0.5rem;
+  }
+
+  .top-nav a {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    padding: 0.32rem 0.08rem;
+  }
+
   #walker { bottom: 18%; }
 
-  .slide { padding-left: 1.4rem; padding-right: 1.4rem; }
+  .slide {
+    padding-top: 8rem;
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+  }
+
+  .slide.about { padding-top: 8rem; }
 
   .slide.about { padding-right: 6.4rem; }
 
