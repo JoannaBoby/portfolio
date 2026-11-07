@@ -426,8 +426,11 @@ document.querySelector(".top-nav").addEventListener("click", (event) => {
   go(next);
 });
 
+const phone = window.matchMedia("(pointer: coarse)");
+
 window.addEventListener("wheel", (event) => {
-  if (!finished) return;
+  if (!finished || phone.matches) return;
+  if (event.sourceCapabilities && event.sourceCapabilities.firesTouchEvents) return;
   if (Math.abs(event.deltaY) < 24) return;
   const current = slides[index];
   if (current.scrollHeight > current.clientHeight + 8) {
@@ -446,15 +449,6 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowUp" || event.key === "PageUp") go(index - 1);
 });
 
-let touchStart = 0;
-window.addEventListener("touchstart", (event) => {
-  touchStart = event.changedTouches[0].clientY;
-}, { passive: true });
-window.addEventListener("touchend", (event) => {
-  const delta = touchStart - event.changedTouches[0].clientY;
-  if (Math.abs(delta) < 48) return;
-  go(index + (delta > 0 ? 1 : -1));
-});
 
 document.querySelector(".contact-card form").addEventListener("submit", (event) => {
   event.preventDefault();
